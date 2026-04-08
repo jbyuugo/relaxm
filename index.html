@@ -739,11 +739,30 @@
     .mobile-drawer { display: block; }
   }
   @media(max-width:900px){
-    .header-inner { padding: 0 .6rem; justify-content: space-between; gap: 0; }
+    /* ヘッダー */
+    .header-inner { padding: 0 .5rem; justify-content: space-between; gap: 0; }
+    .header-logo { padding-right: .3rem; }
+    .header-logo img { height: 60%; }
+    .header-tel { padding: 0 .2rem; }
+    .header-tel-label { font-size: .5rem; }
+    .header-tel-num { font-size: .75rem; padding: .2rem .4rem; }
+    .header-reserve { font-size: .65rem; padding: .2rem .4rem; margin-left: .2rem; }
+    .lang-switcher { padding: 0 .2rem; }
+    .lang-trigger { padding: .2rem .3rem; }
+    .lang-trigger-top { font-size: .48rem; }
+    .lang-trigger-bottom { font-size: .65rem; }
+    .hamburger { margin-left: .2rem; }
+
+    /* ヒーロー */
     .hero { margin-top: 70px; height: calc(100vh - 70px); min-height: 420px; }
-    .hero-content { padding: 0 2rem; }
-    .hero-salon-name { font-size: 90px; }
-    .container { padding: 0 1.5rem; }
+    .hero-content { padding: 0 1.2rem; }
+    .hero-salon-name { font-size: 13vw; white-space: normal; }
+    .hero-address { font-size: 4vw; letter-spacing: .1em; }
+    .hero-catch { font-size: 3.5vw !important; line-height: 1.8; }
+    .hero-access { font-size: 3vw !important; line-height: 1.8; }
+
+    /* その他 */
+    .container { padding: 0 1.2rem; }
     .menu-grid { grid-template-columns: 1fr; } .menu-grid-2 { grid-template-columns: 1fr; }
     .staff-owner { grid-template-columns: 1fr; gap: 2rem; }
     .staff-grid { grid-template-columns: repeat(2,1fr); }
