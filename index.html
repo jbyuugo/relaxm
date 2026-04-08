@@ -739,35 +739,59 @@
     .mobile-drawer { display: block; }
   }
   @media(max-width:900px){
-    /* ヘッダー */
-    .header-inner { padding: 0 .5rem; justify-content: space-between; gap: 0; }
-    .header-logo { padding-right: .3rem; }
-    .header-logo img { height: 60%; }
-    .header-tel { padding: 0 .2rem; }
-    .header-tel-label { font-size: .5rem; }
-    .header-tel-num { font-size: .75rem; padding: .2rem .4rem; }
-    .header-reserve { font-size: .65rem; padding: .2rem .4rem; margin-left: .2rem; }
-    .lang-switcher { padding: 0 .2rem; }
-    .lang-trigger { padding: .2rem .3rem; }
-    .lang-trigger-top { font-size: .48rem; }
-    .lang-trigger-bottom { font-size: .65rem; }
-    .hamburger { margin-left: .2rem; }
+    /* ===== ヘッダー ===== */
+    .header-inner { padding: 0 .4rem; justify-content: space-between; gap: 0; }
+    .header-logo { padding-right: .2rem; }
+    .header-logo img { height: 55%; }
+    /* 電話バナー固定幅 */
+    .header-tel { padding: 0 .15rem; flex-shrink: 0; }
+    .header-tel-label { font-size: .42rem; }
+    .header-tel-num { font-size: .68rem; padding: .15rem .35rem; min-width: 0; }
+    /* 予約バナー固定幅 */
+    .header-reserve { font-size: .62rem; padding: .15rem .35rem; margin-left: .15rem; flex-shrink: 0; }
+    /* 言語バナー固定幅 */
+    .lang-switcher { padding: 0 .15rem; flex-shrink: 0; }
+    .lang-trigger { padding: .15rem .3rem; min-width: 0; }
+    .lang-trigger-top { font-size: .42rem; }
+    .lang-trigger-bottom { font-size: .62rem; }
+    /* ハンバーガー */
+    .hamburger { width: 34px; height: 34px; margin-left: .15rem; flex-shrink: 0; }
+    .hamburger span { width: 18px; }
 
-    /* ヒーロー */
-    .hero { margin-top: 70px; height: calc(100vh - 70px); min-height: 420px; }
-    .hero-content { padding: 0 1.2rem; }
-    .hero-salon-name { font-size: 13vw; white-space: normal; }
-    .hero-address { font-size: 4vw; letter-spacing: .1em; }
-    .hero-catch { font-size: 3.5vw !important; line-height: 1.8; }
-    .hero-access { font-size: 3vw !important; line-height: 1.8; }
+    /* ===== ヒーロー ===== */
+    .hero { margin-top: 70px; height: calc(100vh - 70px); min-height: 500px; }
+    .hero-content { padding: 1.5rem 1.2rem; justify-content: flex-start; }
+    .hero-block1 { align-items: flex-start; }
+    .hero-block2 { align-items: flex-start; }
+    .hero-block3 { align-items: flex-start; padding-bottom: 0; }
+    .hero-salon-name { font-size: 14vw !important; white-space: nowrap; letter-spacing: .02em; }
+    .hero-address { font-size: 4.5vw !important; letter-spacing: .08em; margin-top: .3rem; }
+    .hero-catch { font-size: 3.8vw !important; line-height: 1.9; }
+    .hero-access { font-size: 3.2vw !important; line-height: 1.8; }
+    .hero-divider { margin: .8rem 0; }
 
-    /* その他 */
-    .container { padding: 0 1.2rem; }
-    .menu-grid { grid-template-columns: 1fr; } .menu-grid-2 { grid-template-columns: 1fr; }
+    /* ===== セクション見出し ===== */
+    section { padding: 2.5rem 0; }
+    .section-title { font-size: 1.6rem; }
+    .section-divider { margin: .8rem 0; }
+
+    /* ===== メニュータブ ===== */
+    .menu-tabs { gap: .4rem; padding: .6rem 0; position: sticky; top: 70px; }
+    .menu-tab {
+      font-size: .78rem; padding: .45rem .6rem;
+      flex: 1 1 30%; text-align: center;
+      min-width: 0;
+    }
+
+    /* ===== その他 ===== */
+    .container { padding: 0 1rem; }
+    .menu-grid { grid-template-columns: 1fr; }
+    .menu-grid-2 { grid-template-columns: 1fr; }
     .staff-owner { grid-template-columns: 1fr; gap: 2rem; }
     .staff-grid { grid-template-columns: repeat(2,1fr); }
     .access-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-    footer { padding: 3rem 0 1.5rem; } .footer-inner { flex-direction: column; }
+    footer { padding: 1.5rem 0; }
+    .footer-inner { flex-direction: column; }
   }
 </style>
 </head>
@@ -1590,25 +1614,6 @@
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <div class="footer-inner">
-      <div>
-        <div class="footer-logo">リラックスM</div>
-      </div>
-      <nav class="footer-nav">
-        <ul>
-          <li><a href="#menu">Menu &amp; Price</a></li>
-          <li><a href="#staff">Staff</a></li>
-          <li><a href="#access">Access</a></li>
-          <li><a href="#recruit">求人情報</a></li>
-          <li><a href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer">Reservation (HPB)</a></li>
-        </ul>
-      </nav>
-      <div>
-        <p style="font-family:'Jost',sans-serif;font-size:.58rem;letter-spacing:.3em;color:var(--sage);margin-bottom:.8rem;text-transform:uppercase;">Contact</p>
-        <p style="font-family:'Noto Sans JP',sans-serif;font-size:1.2rem;font-weight:500;letter-spacing:.05em;color:var(--cream);">096-356-3444</p>
-        <p style="font-size:.75rem;margin-top:.5rem;line-height:1.8;">熊本市中央区下通1-7-12<br>RS-13ビル下通二番街 2F</p>
-      </div>
-    </div>
     <p class="footer-copy">© 2025 リラックスM — 熊本下通ボディケアサロン. All rights reserved.</p>
   </div>
 </footer>
