@@ -193,9 +193,39 @@
     font-size: 20px; font-weight: 300; line-height: 1.9;
     color: white;
     margin-top: 1.2rem;
-
-
   }
+  .hero-hours {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 20px; font-weight: 700; line-height: 1.8;
+    color: white; margin-top: .8rem;
+    text-shadow: 2px 2px 0 rgba(0,0,0,.55), 0 4px 16px rgba(0,0,0,.7);
+  }
+  .hero-block4 {
+    display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
+    padding-bottom: 1rem;
+  }
+  .hero-reserve-btn {
+    display: inline-flex; align-items: center;
+    padding: 1rem 2.5rem;
+    background: #e8001c; color: white;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    text-decoration: none; white-space: nowrap;
+    transition: all .3s;
+    box-shadow: 0 4px 20px rgba(232,0,28,.5);
+  }
+  .hero-reserve-btn:hover { background: #c20018; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232,0,28,.6); }
+  .hero-tel-btn {
+    display: inline-flex; align-items: center;
+    padding: .9rem 2rem;
+    background: rgba(255,255,255,.15); color: white;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    text-decoration: none; white-space: nowrap;
+    border: 2px solid rgba(255,255,255,.7);
+    transition: all .3s;
+  }
+  .hero-tel-btn:hover { background: rgba(255,255,255,.25); }
   .btn-primary {
     display: inline-block; padding: .85rem 2rem;
     background: #c0392b; color: white;
@@ -775,7 +805,10 @@
     .hero-block2 { align-items: flex-start; }
     .hero-block3 { align-items: flex-start; padding-bottom: 0; }
     .hero-salon-name { font-size: 14vw !important; white-space: nowrap; letter-spacing: .02em; }
-    .hero-address { font-size: 6.5vw !important; letter-spacing: .08em; margin-top: .3rem; }
+    .hero-hours { font-size: 4.2vw !important; }
+    .hero-reserve-btn { font-size: .9rem; padding: .8rem 1.5rem; }
+    .hero-tel-btn { font-size: .9rem; padding: .7rem 1.2rem; }
+    .hero-block4 { gap: .6rem; }
     .hero-catch { font-size: 5vw !important; line-height: 1.9; }
     .hero-access { font-size: 4.2vw !important; line-height: 1.8; }
     .hero-divider { margin: .8rem 0; }
@@ -896,6 +929,16 @@
     <!-- ブロック③ -->
     <div class="hero-block3">
       <p class="hero-access">☆アクセス☆　熊本市中央区下通1丁目7-12【RS-13ビル下通二番街】2F<br>（下通りアーケード内☆銀座通り近く☆酒場通り角 セブンイレブン・まねきねこの隣）</p>
+      <p class="hero-hours">🕙 営業時間：朝10:00 〜 翌朝4:00（最終受付）　深夜も営業中！</p>
+    </div>
+    <!-- ブロック④ 予約ボタン -->
+    <div class="hero-block4">
+      <a href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer" class="hero-reserve-btn">
+        今すぐネット予約（無料・24時間受付）
+      </a>
+      <a href="tel:096-356-3444" class="hero-tel-btn">
+        📞 096-356-3444
+      </a>
     </div>
   </div>
 </section>
