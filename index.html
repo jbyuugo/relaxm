@@ -27,6 +27,7 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 200;
     background: var(--bark);
     box-shadow: 0 2px 20px rgba(0,0,0,.25);
+    transition: opacity .4s ease;
   }
   .header-inner {
     display: flex; align-items: center;
@@ -891,12 +892,10 @@
     .section-divider { margin: .8rem 0; }
 
     /* ===== メニュータブ ===== */
-    .menu-tabs { gap: .3rem; padding: .5rem 0; position: sticky; top: 70px; }
     .menu-tab {
-      font-size: clamp(.5rem, 2.2vw, .75rem); padding: .4rem .2rem;
-      flex: 1 1 0; text-align: center;
-      min-width: 0; letter-spacing: 0;
-      white-space: nowrap; overflow: hidden;
+      font-size: .72rem; padding: .6rem .2rem;
+      text-align: center; letter-spacing: 0;
+      white-space: normal; line-height: 1.4;
     }
 
     /* ===== その他 ===== */
@@ -1027,11 +1026,11 @@
       <p style="font-size:1.05rem;font-weight:500;line-height:2;color:var(--bark);">カテゴリーをお選びください。すべて税込表示です。</p>
       <p style="font-size:.9rem;font-weight:400;color:var(--clay);margin-top:.3rem;">※ 料金をタップ・クリックすると予約ページへ移動します</p>
     </div>
-    <div class="menu-tabs reveal">
-      <button class="menu-tab active" onclick="showPanel('p1',this)">もみほぐし<wbr>・足つぼ</button>
-      <button class="menu-tab" onclick="showPanel('p2',this)">集中<wbr>オプション</button>
-      <button class="menu-tab" onclick="showPanel('p3',this)">リンパ<wbr>・筋膜</button>
-      <button class="menu-tab" onclick="showPanel('p4',this)">ストレッチ<wbr>・骨盤</button>
+    <div class="menu-tabs reveal" id="menuTabs" style="display:grid;grid-template-columns:repeat(3,1fr);">
+      <button class="menu-tab active" onclick="showPanel('p1',this)">もみほぐし<br>・足つぼ</button>
+      <button class="menu-tab" onclick="showPanel('p2',this)">集中<br>オプション</button>
+      <button class="menu-tab" onclick="showPanel('p3',this)">リンパ・筋膜</button>
+      <button class="menu-tab" onclick="showPanel('p4',this)">ストレッチ<br>・骨盤</button>
       <button class="menu-tab" onclick="showPanel('p5',this)">ヘッドスパ</button>
       <button class="menu-tab" onclick="showPanel('p6',this)">VIPコース</button>
     </div>
@@ -1910,6 +1909,50 @@
     });
   }, { threshold: 0.08 });
   reveals.forEach(el => observer.observe(el));
+
+  // スマホ：ヒーロー以降でヘッダーをフェードアウト
+  (function(){
+    const header = document.querySelector('.site-header');
+    const menuTabs = document.getElementById('menuTabs');
+    function checkScroll() {
+      if (window.innerWidth > 900) {
+        header.style.opacity = '';
+        header.style.pointerEvents = '';
+        if (menuTabs) menuTabs.style.top = '';
+        return;
+      }
+      const hero = document.querySelector('.hero');
+      if (!hero) return;
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      if (heroBottom <= 0) {
+        header.style.opacity = '0';
+        header.style.pointerEvents = 'none';
+        if (menuTabs) menuTabs.style.top = '0px';
+      } else {
+        header.style.opacity = '1';
+        header.style.pointerEvents = '';
+        if (menuTabs) menuTabs.style.top = '70px';
+      }
+    }
+    window.addEventListener('scroll', checkScroll, { passive: true });
+    window.addEventListener('resize', checkScroll);
+    checkScroll();
+  })();
+
+  // メニュータブ：スマホで3列グリッド
+  function applyMenuTabLayout() {
+    const tabs = document.getElementById('menuTabs');
+    if (!tabs) return;
+    if (window.innerWidth <= 900) {
+      tabs.style.display = 'grid';
+      tabs.style.gridTemplateColumns = '1fr 1fr 1fr';
+    } else {
+      tabs.style.display = '';
+      tabs.style.gridTemplateColumns = '';
+    }
+  }
+  applyMenuTabLayout();
+  window.addEventListener('resize', applyMenuTabLayout);
 
   // Menu tabs
   function showPanel(id, btn) {
