@@ -298,7 +298,31 @@
   .menu-card-name { font-family:'Noto Sans JP',sans-serif; font-size:1.4rem; font-weight:400; color:var(--bark); margin-bottom:.5rem; }
   .menu-card-desc { font-size:1rem; font-weight:400; line-height:1.9; color:var(--clay); margin-bottom:1.2rem; }
   .menu-card-price { display:flex; gap:.6rem; flex-wrap:wrap; border-top:1px solid rgba(74,124,89,.15); padding-top:1rem; }
-  .price-item { display:flex; align-items:center; gap:.5rem; background:var(--parchment); padding:.35rem .7rem; border-radius:2px; }
+  .price-item {
+    display: flex; align-items: center; gap: .5rem;
+    background: var(--parchment); padding: .35rem .7rem; border-radius: 2px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all .2s;
+    position: relative;
+  }
+  a.price-item:hover {
+    background: var(--bark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(45,90,61,.25);
+  }
+  a.price-item:hover .price-duration,
+  a.price-item:hover .price-amount { color: white; }
+  a.price-item::after {
+    content: '予約';
+    position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+    background: var(--bark); color: white;
+    font-size: .6rem; font-weight: 600; padding: .15rem .5rem;
+    border-radius: 3px; white-space: nowrap;
+    opacity: 0; transition: opacity .2s;
+    pointer-events: none;
+  }
+  a.price-item:hover::after { opacity: 1; }
   .price-duration { font-family:'Noto Sans JP',sans-serif; font-size:.95rem; font-weight:500; color:var(--bark); }
   .price-amount { font-family:'Noto Sans JP',sans-serif; font-size:1rem; font-weight:500; color:var(--bark); }
   .price-old { text-decoration:line-through; color:var(--sand); font-size:.85rem; }
@@ -377,10 +401,10 @@
   .owner-role { font-family:'Jost',sans-serif; font-size:.6rem; letter-spacing:.3em; color:var(--sage); text-transform:uppercase; margin-bottom:1.5rem; }
   .owner-bio { font-size:.92rem; font-weight:400; line-height:2.2; color:var(--clay); }
   .owner-hobbies { margin-top:1rem; font-family:'Jost',sans-serif; font-size:.65rem; letter-spacing:.15em; color:var(--sand); }
-  .staff-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; margin-top:1rem; }
+  .staff-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; margin-top:1rem; align-items: start; }
   .staff-card { position:relative; }
-  .staff-avatar { width:100%; aspect-ratio:1; display:flex; align-items:center; justify-content:center; margin-bottom:.8rem; overflow:hidden; background: var(--parchment); }
-  .staff-avatar img { width:100%; height:100%; object-fit:contain; display:block; }
+  .staff-avatar { width:100%; aspect-ratio:1; display:flex; align-items:center; justify-content:center; margin-bottom:.8rem; overflow:hidden; background: var(--parchment); flex-shrink:0; }
+  .staff-avatar img { width:100%; height:100%; object-fit:cover; display:block; }
   .staff-avatar-emoji { font-size:2rem; opacity:.6; }
   .staff-role { font-family:'Jost',sans-serif; font-size:.7rem; letter-spacing:.25em; text-transform:uppercase; color:var(--sage); margin-bottom:.25rem; }
   .staff-name { font-family:'Noto Sans JP',sans-serif; font-size:1.15rem; font-weight:400; color:var(--bark); text-align:left; white-space:nowrap; }
@@ -531,6 +555,15 @@
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 1rem; font-weight: 700;
     text-decoration: none; transition: all .3s;
+  }
+  .roomtherapis-btn {
+    display: inline-flex; align-items: center; gap: .7rem;
+    padding: 1rem 2.5rem; margin-top: 1rem;
+    background: #2c1f0e; color: #e8d5b0;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    text-decoration: none; transition: all .3s;
+    text-align: center; line-height: 1.5;
   }
   .roomtherapis-btn:hover { background: #1a1005; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.3); }
   .about-info-grid {
@@ -869,6 +902,7 @@
       <li><a href="javascript:void(0)" onclick="goTo('access')" data-i18n="nav_access">アクセス</a></li>
       <li><a href="https://beauty.hotpepper.jp/kr/slnH000269241/blog" target="_blank" rel="noopener noreferrer">スタッフ<wbr>ブログ</a></li>
       <li><a href="javascript:void(0)" onclick="goTo('recruit')" data-i18n="nav_recruit">求人</a></li>
+      <li><a href="javascript:void(0)" onclick="goTo('roomtherapis')">Room Therapis</a></li>
       <li><a href="javascript:void(0)" onclick="showPage('about')">リラックスM<wbr>について</a></li>
     </ul>
 
@@ -915,6 +949,7 @@
   <a href="javascript:void(0)" onclick="goTo('access');closeDrawer()" data-i18n="nav_access">アクセス</a>
   <a href="https://beauty.hotpepper.jp/kr/slnH000269241/blog" target="_blank" rel="noopener noreferrer" onclick="closeDrawer()">スタッフ<wbr>ブログ</a>
   <a href="javascript:void(0)" onclick="goTo('recruit');closeDrawer()" data-i18n="nav_recruit">求人</a>
+  <a href="javascript:void(0)" onclick="goTo('roomtherapis');closeDrawer()">Room Therapis</a>
   <a href="javascript:void(0)" onclick="showPage('about');closeDrawer()">リラックスM<wbr>について</a>
 </div>
 
@@ -980,10 +1015,10 @@
             <h3 class="menu-card-name">もみほぐし</h3>
             <p class="menu-card-desc">おひとりおひとりに合った施術で自然治癒力を最大限に引き出します。</p>
             <div class="menu-card-price">
-              <div class="price-item"><span class="price-duration">30分</span><span class="price-amount">¥2,600</span></div>
-              <div class="price-item"><span class="price-duration">60分</span><span class="price-amount">¥4,600</span></div>
-              <div class="price-item"><span class="price-duration">90分</span><span class="price-amount">¥6,900</span></div>
-              <div class="price-item"><span class="price-duration">120分</span><span class="price-amount">¥9,200</span></div>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">30分</span><span class="price-amount">¥2,600</span></a>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">60分</span><span class="price-amount">¥4,600</span></a>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">90分</span><span class="price-amount">¥6,900</span></a>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">120分</span><span class="price-amount">¥9,200</span></a>
             </div>
           </div>
         </div>
@@ -993,9 +1028,9 @@
             <h3 class="menu-card-name">足つぼマッサージ</h3>
             <p class="menu-card-desc">血行促進・新陳代謝が活発に。反射区を刺激し弱った臓器・器官を活性化。ふくらはぎのリンパも流してむくみを解消。（クリーム＆オイル使用）</p>
             <div class="menu-card-price">
-              <div class="price-item"><span class="price-duration">30分</span><span class="price-amount">¥3,300</span></div>
-              <div class="price-item"><span class="price-duration">45分</span><span class="price-amount">¥4,050</span></div>
-              <div class="price-item"><span class="price-duration">60分</span><span class="price-amount">¥5,400</span></div>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">30分</span><span class="price-amount">¥3,300</span></a>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">45分</span><span class="price-amount">¥4,050</span></a>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">60分</span><span class="price-amount">¥5,400</span></a>
             </div>
           </div>
         </div>
@@ -1005,9 +1040,9 @@
             <h3 class="menu-card-name">もみほぐし＆足つぼ セットコース</h3>
             <p class="menu-card-desc">全身もみほぐしと足つぼをお得なセット価格で。全身リフレッシュしたい方におすすめ。</p>
             <div class="menu-card-price">
-              <div class="price-item"><span class="price-duration">60分</span><span class="price-amount">¥5,000</span></div>
-              <div class="price-item"><span class="price-duration">90分</span><span class="price-amount">¥7,500</span></div>
-              <div class="price-item"><span class="price-duration">120分</span><span class="price-amount">¥10,000</span></div>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">60分</span><span class="price-amount">¥5,000</span></a>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">90分</span><span class="price-amount">¥7,500</span></a>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">120分</span><span class="price-amount">¥10,000</span></a>
             </div>
           </div>
         </div>
@@ -1023,7 +1058,7 @@
             <h3 class="menu-card-name">眼精疲労コース</h3>
             <p class="menu-card-desc">眼の上を温めた後、頭から首の筋肉をゆっくりほぐします。パソコン・スマホによる目の疲れ・脳ストレス・頭痛にも効果あり。</p>
             <div class="menu-card-price">
-              <div class="price-item"><span class="price-duration">15分〜</span><span class="price-amount">¥1,750〜</span></div>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">15分〜</span><span class="price-amount">¥1,750〜</span></a>
             </div>
           </div>
         </div>
@@ -1033,7 +1068,7 @@
             <h3 class="menu-card-name">首セラピー</h3>
             <p class="menu-card-desc">クリームを使ってコリとリンパを流します。首まわりの張りや疲れをピンポイントでケア。</p>
             <div class="menu-card-price">
-              <div class="price-item"><span class="price-duration">15分〜</span><span class="price-amount">¥1,750〜</span></div>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">15分〜</span><span class="price-amount">¥1,750〜</span></a>
             </div>
           </div>
         </div>
@@ -1043,7 +1078,7 @@
             <h3 class="menu-card-name">ハンドセラピー</h3>
             <p class="menu-card-desc">クリームを使って肘から下を中心にほぐします。デスクワーク・スマホ疲れの手指・前腕に。</p>
             <div class="menu-card-price">
-              <div class="price-item"><span class="price-duration">15分〜</span><span class="price-amount">¥1,750〜</span></div>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">15分〜</span><span class="price-amount">¥1,750〜</span></a>
             </div>
           </div>
         </div>
@@ -1053,7 +1088,7 @@
             <h3 class="menu-card-name">パーソナルストレッチ</h3>
             <p class="menu-card-desc">腰 / 背面 / 足 / 肩 の各部位に特化したストレッチ。気になる箇所を集中的にほぐします。</p>
             <div class="menu-card-price">
-              <div class="price-item"><span class="price-duration">各15分</span><span class="price-amount">¥1,950</span></div>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">各15分</span><span class="price-amount">¥1,950</span></a>
             </div>
           </div>
         </div>
@@ -1069,9 +1104,9 @@
             <h3 class="menu-card-name">リンパドレナージュ（リンパマッサージ）</h3>
             <p class="menu-card-desc">リラックス効果の高いアロマオイルを使用し、癒しとほぐしを融合させたオリジナル手法でより深い極上のリラクゼーションへ。女性スタッフ対応。<br>アロマはお好みで：ラベンダー・ベーシック・ゼラニウム・ローズマリー・グレープフルーツ<br>※キャンペーン価格</p>
             <div class="menu-card-price">
-              <div class="price-item"><span class="price-duration">30分</span><span class="price-amount">¥3,300</span></div>
-              <div class="price-item"><span class="price-duration">60分</span><span class="price-amount">¥6,600</span></div>
-              <div class="price-item"><span class="price-duration">90分</span><span class="price-amount">¥9,900</span></div>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">30分</span><span class="price-amount">¥3,300</span></a>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">60分</span><span class="price-amount">¥6,600</span></a>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">90分</span><span class="price-amount">¥9,900</span></a>
             </div>
           </div>
         </div>
@@ -1081,21 +1116,21 @@
             <h3 class="menu-card-name">筋膜リリース</h3>
             <p class="menu-card-desc">深部まで届く筋膜リリース。酷い肩こり・坐骨神経痛・膝の痛み・姿勢改善に。（導入記念価格）</p>
             <div class="menu-card-price">
-              <div class="price-item">
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer">
                 <span class="price-duration">30分</span>
                 <span class="price-amount price-old">¥5,500</span>
                 <span class="price-amount price-new">¥4,200</span>
-              </div>
-              <div class="price-item">
+              </a>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer">
                 <span class="price-duration">60分</span>
                 <span class="price-amount price-old">¥11,000</span>
                 <span class="price-amount price-new">¥8,400</span>
-              </div>
-              <div class="price-item">
+              </a>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer">
                 <span class="price-duration">90分</span>
                 <span class="price-amount price-old">¥16,500</span>
                 <span class="price-amount price-new">¥12,600</span>
-              </div>
+              </a>
             </div>
           </div>
         </div>
@@ -1111,10 +1146,10 @@
             <h3 class="menu-card-name">お悩み撃退ストレッチ</h3>
             <p class="menu-card-desc">プロフェッショナルパーソナルストレッチディプロマ取得者による施術。今より必ず良い状態へ導きます。腰痛・肩こり・足のむくみ 各種対応。</p>
             <div class="menu-card-price">
-              <div class="price-item"><span class="price-duration">各15分</span><span class="price-amount">¥1,950</span></div>
-              <div class="price-item"><span class="price-duration">各40分</span><span class="price-amount">¥5,020</span></div>
-              <div class="price-item"><span class="price-duration">60分</span><span class="price-amount">¥7,350</span></div>
-              <div class="price-item"><span class="price-duration">90分</span><span class="price-amount">¥11,295</span></div>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">各15分</span><span class="price-amount">¥1,950</span></a>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">各40分</span><span class="price-amount">¥5,020</span></a>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">60分</span><span class="price-amount">¥7,350</span></a>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">90分</span><span class="price-amount">¥11,295</span></a>
             </div>
           </div>
         </div>
@@ -1123,8 +1158,8 @@
           <h3 class="menu-card-name">ストレッチ＆調整コース</h3>
           <p class="menu-card-desc">ストレッチに全身調整＋ヘッドをプラス。全身を緩めていくデラックスなコース。</p>
           <div class="menu-card-price">
-            <div class="price-item"><span class="price-duration">60分</span><span class="price-amount">¥7,160</span></div>
-            <div class="price-item"><span class="price-duration">100分</span><span class="price-amount">¥11,940</span></div>
+            <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">60分</span><span class="price-amount">¥7,160</span></a>
+            <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">100分</span><span class="price-amount">¥11,940</span></a>
           </div>
         </div>
         <div class="menu-card">
@@ -1132,8 +1167,8 @@
           <h3 class="menu-card-name">ストレッチデトックスコース</h3>
           <p class="menu-card-desc">ストレッチ＋リンパドレナージュ＋ヘッドのデトックスコース。</p>
           <div class="menu-card-price">
-            <div class="price-item"><span class="price-duration">60分</span><span class="price-amount">¥7,160</span></div>
-            <div class="price-item"><span class="price-duration">100分</span><span class="price-amount">¥11,940</span></div>
+            <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">60分</span><span class="price-amount">¥7,160</span></a>
+            <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">100分</span><span class="price-amount">¥11,940</span></a>
           </div>
         </div>
         <div class="menu-card">
@@ -1141,9 +1176,9 @@
           <h3 class="menu-card-name">骨盤調整コース</h3>
           <p class="menu-card-desc">もみほぐしでお身体を整えた後、骨盤を正しい位置に戻すよう促す施術。骨盤の歪みは姿勢崩れ・呼吸の乱れ・健康悪化につながります。</p>
           <div class="menu-card-price">
-            <div class="price-item"><span class="price-duration">40分</span><span class="price-amount">¥3,650</span></div>
-            <div class="price-item"><span class="price-duration">50分</span><span class="price-amount">¥4,570</span></div>
-            <div class="price-item"><span class="price-duration">70分</span><span class="price-amount">¥6,390</span></div>
+            <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">40分</span><span class="price-amount">¥3,650</span></a>
+            <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">50分</span><span class="price-amount">¥4,570</span></a>
+            <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">70分</span><span class="price-amount">¥6,390</span></a>
           </div>
         </div>
       </div>
@@ -1158,8 +1193,8 @@
             <h3 class="menu-card-name">ドライヘッドスパ</h3>
             <p class="menu-card-desc">選べるアロマジェルで頭皮をやさしく・強くマッサージ。脳疲労解消・首コリにも。寝落ちすること間違いなし！</p>
             <div class="menu-card-price">
-              <div class="price-item"><span class="price-duration">30分</span><span class="price-amount">¥3,700</span></div>
-              <div class="price-item"><span class="price-duration">60分</span><span class="price-amount">¥7,400</span></div>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">30分</span><span class="price-amount">¥3,700</span></a>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">60分</span><span class="price-amount">¥7,400</span></a>
             </div>
           </div>
         </div>
@@ -1169,8 +1204,8 @@
             <h3 class="menu-card-name">かっさヘッドスパ</h3>
             <p class="menu-card-desc">頭皮やわやわ、お顔もリフトアップ！かっさで頭皮の血行促進・エイジング対策。60分はクリームで肩甲骨・デコルテもしっかりほぐします。</p>
             <div class="menu-card-price">
-              <div class="price-item"><span class="price-duration">30分</span><span class="price-amount">¥4,200</span></div>
-              <div class="price-item"><span class="price-duration">60分</span><span class="price-amount">¥8,400</span></div>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">30分</span><span class="price-amount">¥4,200</span></a>
+              <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">60分</span><span class="price-amount">¥8,400</span></a>
             </div>
           </div>
         </div>
@@ -1185,7 +1220,7 @@
           <h3 class="menu-card-name">VIPコース 梅</h3>
           <p class="menu-card-desc">足つぼ ＋ もみほぐし ＋ ハンドセラピー or 首セラピー</p>
           <div class="menu-card-price">
-            <div class="price-item"><span class="price-duration">90分</span><span class="price-amount">¥8,460</span></div>
+            <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">90分</span><span class="price-amount">¥8,460</span></a>
           </div>
         </div>
         <div class="menu-card">
@@ -1193,7 +1228,7 @@
           <h3 class="menu-card-name">VIPコース 竹</h3>
           <p class="menu-card-desc">足つぼ ＋ 骨盤調整 ＋ ヘッドセラピー</p>
           <div class="menu-card-price">
-            <div class="price-item"><span class="price-duration">100分</span><span class="price-amount">¥9,400</span></div>
+            <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">100分</span><span class="price-amount">¥9,400</span></a>
           </div>
         </div>
         <div class="menu-card">
@@ -1201,7 +1236,7 @@
           <h3 class="menu-card-name">VIPコース 松</h3>
           <p class="menu-card-desc">骨盤調整 ＋ リンパドレナージュ ＋ ヘッドセラピー</p>
           <div class="menu-card-price">
-            <div class="price-item"><span class="price-duration">100分</span><span class="price-amount">¥10,500</span></div>
+            <a class="price-item" href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer"><span class="price-duration">100分</span><span class="price-amount">¥10,500</span></a>
           </div>
         </div>
       </div>
@@ -1607,10 +1642,10 @@
 </section>
 
 <!-- ROOM THERAPIS -->
-<section class="roomtherapis-section">
+<section class="roomtherapis-section" id="roomtherapis">
   <div class="container">
     <div class="reveal">
-      <h2 class="section-title">RoomTherapis<br><span style="font-size:1.2rem;font-weight:400;">（ルームセラピス）</span></h2>
+      <h2 class="section-title">Room Therapis<br><span style="font-size:1.2rem;font-weight:400;">（ルームセラピス）</span></h2>
       <div class="section-divider"></div>
     </div>
     <div class="roomtherapis-inner reveal">
@@ -1619,7 +1654,7 @@
           <img src="roomtherapis1.jpg" alt="RoomTherapis" style="width:100%;display:block;margin-bottom:1.5rem;object-fit:cover;transition:opacity .3s;" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">
         </a>
         <p class="roomtherapis-desc">
-          リラックスM同ビルB1に街中レンタルサロン　<strong>RoomTherapis</strong>　OPEN！！<br>
+          リラックスM同ビルB1に街中レンタルサロン　<strong>Room Therapis</strong>　OPEN！！<br>
           ラグジュアリーな異なる雰囲気の施術ルームを時間でお貸しいたします！！<br>
           <strong>1時間550円〜</strong><br>
           お気軽にお問い合わせ下さい。
@@ -1630,7 +1665,7 @@
         </a>
         <a href="https://room-therapis.com/" target="_blank" rel="noopener noreferrer" class="roomtherapis-btn">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          RoomTherapis<br>ホームページへ
+          Room Therapis<br>ホームページへ
         </a>
       </div>
     </div>
