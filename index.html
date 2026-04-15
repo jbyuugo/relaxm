@@ -658,34 +658,105 @@
     text-align: center; line-height: 1.5;
   }
   .roomtherapis-btn:hover { background: #1a1005; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.3); }
-  /* ===== INTRO ===== */
-  .intro-catch {
+  /* ===== CONCEPT / INTRO ===== */
+  #intro { background: var(--dark); }
+  .concept-img-wrap {
+    width: 100%; aspect-ratio: 4/3; overflow: hidden;
+  }
+  .concept-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center; display: block;
+  }
+  .concept-body {
+    padding: 48px 24px 56px;
+    text-align: center;
+  }
+  .concept-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px; letter-spacing: .5em;
+    text-transform: uppercase; color: var(--sage);
+    display: block; margin-bottom: 28px;
+  }
+  .concept-headline {
     font-family: 'Noto Serif JP', serif;
-    font-size: clamp(1.4rem, 2.5vw, 2.2rem);
-    font-weight: 300; line-height: 1.8;
-    color: white; letter-spacing: .1em;
-    margin-bottom: 2rem;
+    font-size: clamp(15px, 4vw, 30px);
+    font-weight: 300; color: white;
+    letter-spacing: .1em; line-height: 1.6;
+    margin-bottom: 10px;
+    white-space: nowrap;
   }
-  .intro-divider { width: 40px; height: 1px; background: var(--sage); margin-bottom: 2rem; }
-  .intro-desc { font-size: 1rem; font-weight: 300; line-height: 2.2; color: rgba(255,255,255,.75); margin-bottom: 3rem; }
-  .intro-info { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 3rem; padding: 2rem; border: 1px solid rgba(158,207,170,.2); }
-  .intro-info-item { display: flex; gap: 1.5rem; align-items: baseline; }
-  .intro-info-label { font-family: 'Jost', sans-serif; font-size: .65rem; letter-spacing: .3em; text-transform: uppercase; color: var(--sage); white-space: nowrap; min-width: 5rem; }
-  .intro-info-value { font-size: .95rem; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,.85); }
-  .intro-reserve-btn {
-    display: inline-flex; align-items: center;
-    padding: 1.1rem 3rem;
-    border: 1px solid rgba(255,255,255,.5);
-    color: white;
+  .concept-sub {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(12px, 3vw, 18px);
+    font-weight: 300; color: rgba(255,255,255,.5);
+    letter-spacing: .12em; margin-bottom: 28px;
+  }
+  .concept-divider {
+    width: 32px; height: 1px;
+    background: var(--sage); margin: 0 auto 28px;
+  }
+  .concept-desc {
+    font-size: 14px; font-weight: 300;
+    line-height: 2.4; color: rgba(255,255,255,.65);
+    margin-bottom: 36px; text-align: left;
+  }
+  .concept-info {
+    display: flex; flex-direction: column;
+    border-top: 1px solid rgba(158,207,170,.15);
+    margin-bottom: 32px;
+  }
+  .concept-info-item {
+    display: flex; align-items: baseline;
+    gap: 16px; padding: 16px 0;
+    border-bottom: 1px solid rgba(158,207,170,.1);
+    text-align: left;
+  }
+  .concept-info-item:last-child { border-bottom: none; }
+  .concept-info-label {
+    font-family: 'Jost', sans-serif; font-size: 10px;
+    letter-spacing: .4em; text-transform: uppercase;
+    color: var(--sage); min-width: 52px; flex-shrink: 0;
+  }
+  .concept-info-value {
+    font-size: 14px; font-weight: 300;
+    line-height: 2; color: rgba(255,255,255,.8);
+  }
+  .concept-reserve-btn {
+    display: block; width: 100%;
+    padding: 18px 0;
+    background: var(--sage); color: var(--dark);
     font-family: 'Noto Sans JP', sans-serif;
-    font-size: .95rem; font-weight: 500;
-    text-decoration: none; letter-spacing: .1em;
-    transition: all .3s;
+    font-size: 15px; font-weight: 700;
+    text-decoration: none; letter-spacing: .08em;
+    text-align: center; transition: background .3s;
   }
-  .intro-reserve-btn:hover { background: white; color: var(--dark); }
-  @media(max-width:900px){
-    .intro-info-item { flex-direction: column; gap: .3rem; }
-    .intro-info { padding: 1.5rem; }
+  .concept-reserve-btn:hover { background: var(--sand); }
+  @media(min-width: 900px){
+    .concept-wrap-desktop {
+      display: grid; grid-template-columns: 45% 55%;
+      min-height: 700px;
+    }
+    .concept-img-wrap { aspect-ratio: unset; height: 100%; }
+    .concept-body {
+      padding: 64px 56px; text-align: left;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .concept-divider { margin: 0 0 28px; }
+    .concept-info { flex-direction: row; gap: 0; }
+    .concept-info-item {
+      flex-direction: column; flex: 1; gap: 8px;
+      padding: 24px 16px 24px 0; border-bottom: none;
+      border-right: 1px solid rgba(158,207,170,.1);
+    }
+    .concept-info-item:last-child { border-right: none; }
+    .concept-reserve-btn {
+      display: inline-block; width: auto;
+      padding: 16px 40px;
+      background: transparent;
+      color: rgba(255,255,255,.85); font-weight: 500;
+      border: 1px solid rgba(255,255,255,.35);
+    }
+    .concept-reserve-btn:hover { background: white; color: var(--dark); }
   }
 
   .about-info-grid {
@@ -1078,32 +1149,35 @@
   </div>
 </section>
 
-<!-- INTRO -->
-<section id="intro" style="background:var(--dark); padding: 5rem 0;">
-  <div class="container">
-    <div class="intro-inner reveal">
-      <div class="intro-text">
-        <p class="intro-catch">施術・接客・おもてなし<br>地域一番店を目指しています</p>
-        <div class="intro-divider"></div>
-        <p class="intro-desc">頭から足の先まで経験豊かな技術者がオールハンドで施術します。<br>日ごろからのお身体のお疲れや心のストレス、スッキリしませんか♬</p>
-        <div class="intro-info">
-          <div class="intro-info-item">
-            <span class="intro-info-label">営業時間</span>
-            <span class="intro-info-value">朝10:00 〜 翌朝5:00　最終受付 翌朝4:00</span>
-          </div>
-          <div class="intro-info-item">
-            <span class="intro-info-label">アクセス</span>
-            <span class="intro-info-value">熊本市中央区下通1丁目7-12　RS-13ビル下通二番街 2F<br><span style="font-size:.85em;opacity:.7;">下通アーケード内 / 銀座通り近く / 酒場通り角 / セブンイレブン・まねきねこの隣</span></span>
-          </div>
-          <div class="intro-info-item">
-            <span class="intro-info-label">電話</span>
-            <span class="intro-info-value"><a href="tel:096-356-3444" style="color:var(--sand);text-decoration:none;">096-356-3444</a></span>
-          </div>
+<!-- CONCEPT -->
+<section id="intro">
+  <div class="concept-wrap-desktop">
+    <div class="concept-img-wrap">
+      <img src="interior10.png" alt="リラックスM 店内">
+    </div>
+    <div class="concept-body reveal">
+      <span class="concept-label">Concept</span>
+      <h2 class="concept-headline">施術・接客・おもてなし</h2>
+      <p class="concept-sub">地域一番店を目指しています</p>
+      <div class="concept-divider"></div>
+      <p class="concept-desc">頭から足の先まで経験豊かな技術者がオールハンドで施術します。日ごろからのお身体のお疲れや心のストレス、スッキリしませんか♬</p>
+      <div class="concept-info">
+        <div class="concept-info-item">
+          <span class="concept-info-label">Hours</span>
+          <span class="concept-info-value">朝10:00 〜 翌朝5:00<br>最終受付 翌朝4:00</span>
         </div>
-        <a href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer" class="intro-reserve-btn">
-          今すぐネット予約（24時間受付）
-        </a>
+        <div class="concept-info-item">
+          <span class="concept-info-label">Access</span>
+          <span class="concept-info-value">熊本市中央区下通1丁目7-12<br>RS-13ビル 下通二番街 2F</span>
+        </div>
+        <div class="concept-info-item">
+          <span class="concept-info-label">Tel</span>
+          <span class="concept-info-value"><a href="tel:096-356-3444" style="color:var(--sand);text-decoration:none;">096-356-3444</a></span>
+        </div>
       </div>
+      <a href="https://beauty.hotpepper.jp/kr/slnH000269241/" target="_blank" rel="noopener noreferrer" class="concept-reserve-btn">
+        今すぐネット予約（24時間受付）
+      </a>
     </div>
   </div>
 </section>
