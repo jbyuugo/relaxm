@@ -847,7 +847,6 @@
   .access-map { aspect-ratio:4/3; overflow:hidden; position:relative; }
   .access-gaikan { aspect-ratio:4/3; overflow:hidden; }
   .access-gaikan-side { display: none; }
-  .noson-pc-side { display: none; }
   .map-grid-bg { position:absolute; inset:0; opacity:.05; background-image:linear-gradient(var(--sand) 1px,transparent 1px),linear-gradient(90deg,var(--sand) 1px,transparent 1px); background-size:40px 40px; }
   .map-icon-wrap { position:relative; z-index:1; text-align:center; }
   .map-placeholder-text { font-family:'Jost',sans-serif; font-size:.62rem; letter-spacing:.2em; color:var(--sand); position:relative; z-index:1; }
@@ -1483,21 +1482,11 @@
       padding-top: 5rem !important;
       padding-bottom: 5rem !important;
     }
-    .noson-pc-side {
-      display: block !important;
-      flex: 0 0 42%;
-      align-self: stretch;
-      border-radius: 16px;
-      overflow: hidden;
-      margin: 0 !important;
-    }
-    .noson-pc-side img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
-    }
-    .noson-inner { grid-template-columns: 1fr !important; flex: 1; min-width: 0; }
-    .noson-visual { order: 0 !important; margin-top: 1.5rem; }
-    .noson-slideshow { width: 100%; height: 220px; border-radius: 12px; overflow: hidden; }
+    .noson-inner { display: flex !important; flex-direction: row !important; align-items: stretch !important; gap: 0 !important; width: 100% !important; }
+    .noson-visual { order: 0 !important; flex: 0 0 45% !important; margin: 0 !important; }
+    .noson-text { order: 1 !important; flex: 1 !important; padding-left: 0.5rem !important; }
+    .noson-slideshow { width: 100% !important; height: 100% !important; min-height: 320px !important; border-radius: 0 !important; overflow: hidden; }
+    .noson-section > .container { padding: 5rem 4rem 5rem 0 !important; max-width: 100% !important; }
     /* アクセス */
     .access-section { background: #f5f0eb !important; padding: 0 !important; }
     .access-section > .container {
@@ -2337,8 +2326,6 @@
 
     /* ===== noson Premium ===== */
     .noson-section { background: #f5f0eb; }
-    .noson-section .section-top-img { display: block; width: 100%; overflow: hidden; }
-    .noson-section .section-top-img img { width: 100%; height: auto; display: block; }
     .noson-section .section-title {
       font-family: 'Noto Serif JP', serif;
       color: #000; font-weight: 500;
@@ -3427,14 +3414,8 @@
 
 <!-- NOSON -->
 <section class="noson-section">
-  <div class="section-top-img reveal-img">
-    <img src="noson/noson_header.png" alt="noson Premium">
-  </div>
   <div class="container">
     <!-- PC専用: 左サイド画像 -->
-    <div class="noson-pc-side">
-      <img src="noson/noson_pc.png" alt="noson Premium">
-    </div>
     <div class="noson-inner reveal">
       <div class="noson-text">
         <div class="section-title-wrap">
@@ -3453,8 +3434,6 @@
       <div class="noson-visual">
         <div class="noson-slideshow">
           <div class="noson-slide active" style="background-image:url('noson/noson1.jpg')"></div>
-          <div class="noson-slide" style="background-image:url('noson/noson2.jpg')"></div>
-          <div class="noson-slide" style="background-image:url('noson/noson3.jpg')"></div>
         </div>
       </div>
     </div>
@@ -3765,16 +3744,6 @@
     }
   }
 
-  // nosonスライドショー
-  (function(){
-    const slides = document.querySelectorAll('.noson-slide');
-    let current = 0;
-    setInterval(() => {
-      slides[current].classList.remove('active');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('active');
-    }, 4000);
-  })();
 
   // ヒーロースライドショー（PC: interior1固定）
   // ※ スライドショー停止済み
