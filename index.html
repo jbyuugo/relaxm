@@ -1227,7 +1227,8 @@
       width: 100%; height: 100%; object-fit: cover; display: block;
     }
     .roomtherapis-section .section-title br { display: none !important; }
-    .roomtherapis-section .section-title span { font-size: inherit !important; font-weight: inherit !important; }
+    .rt-sub-sp { display: none !important; }
+    .rt-sub-pc { display: inline !important; font-size: 0.6em !important; font-weight: 400 !important; }
     .roomtherapis-tel-btn { border-radius: 10px !important; }
     .roomtherapis-btn { border-radius: 10px !important; }
     /* セラピスト募集 スマホ同スタイル */
@@ -1296,7 +1297,8 @@
     .blog-row .blog-banner-inner,
     .blog-row .shiromain-banner-inner { flex: 1; box-sizing: border-box; }
     /* SNS横並び */
-    .sns-banner-row { flex-direction: row !important; justify-content: center; gap: 2rem !important; }
+    .sns-banner-row { flex-direction: row !important; flex-wrap: wrap !important; justify-content: center; gap: 2rem !important; }
+    .sns-banner-row .sns-blog-link { flex-basis: 100% !important; justify-content: center; }
     /* 全セクションタイトル共通（PC） */
     .section-title-wrap { width: fit-content; }
     .section-title-wrap .section-title {
@@ -1583,7 +1585,10 @@
   .noson-inner { display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center; }
   .noson-desc { font-size: 1rem; font-weight: 400; line-height: 2.1; color: var(--clay); margin-bottom: 1.5rem; }
   .noson-desc strong { color: var(--bark); font-weight: 500; }
+  .rt-sub-pc { display: none; }
   .noson-badge { display: inline-flex; align-items: center; gap: .6rem; font-size: .9rem; font-weight: 500; color: var(--bark); background: rgba(74,124,89,.1); border: 1px solid rgba(74,124,89,.3); padding: .6rem 1.2rem; }
+  .noson-site-btn { display: inline-flex; align-items: center; margin-top: 1rem; padding: .7rem 1.4rem; background: var(--bark); color: #fff; font-size: .9rem; font-weight: 500; letter-spacing: .05em; text-decoration: none; border-radius: 6px; transition: background .2s, transform .2s; }
+  .noson-site-btn:hover { background: var(--clay); transform: translateY(-2px); }
   .noson-visual { display: flex; justify-content: center; align-items: center; }
   .noson-slideshow { width: 280px; height: 280px; position: relative; flex-shrink: 0; }
   .noson-slide { position: absolute; inset: 0; background-size: contain; background-position: center; background-repeat: no-repeat; opacity: 0; transition: opacity 1.5s ease-in-out; }
@@ -2350,6 +2355,7 @@
       -webkit-font-smoothing: antialiased;
     }
     .noson-badge svg { width: 18px; height: 18px; }
+    .noson-site-btn { display: block !important; text-align: center; margin-left: auto !important; margin-right: auto !important; }
 
     /* ===== アクセス ===== */
     .access-section { background: #f5f0eb; }
@@ -3278,21 +3284,11 @@
           <p class="blog-banner-title">スタッフブログ</p>
           <p class="blog-banner-en">Staff Blog</p>
           <div class="blog-banner-divider"></div>
-          <p class="blog-banner-desc">セラピストの日常を毎日更新する人気ブログ！是非ご覧ください！</p>
+          <p class="blog-banner-desc">セラピストの日常を毎日更新する人気ブログ！<br>是非ご覧ください！</p>
           <span class="blog-banner-btn">読む &nbsp;→</span>
         </div>
       </a>
 
-      <!-- 白まいのブログバナー -->
-      <a href="https://ameblo.jp/mrelax/" target="_blank" rel="noopener noreferrer" class="shiromain-banner reveal">
-        <div class="shiromain-banner-inner">
-          <p class="blog-banner-title">白まいのブログ</p>
-          <p class="blog-banner-en">SHIROMAI'S BLOG</p>
-          <div class="blog-banner-divider"></div>
-          <p class="blog-banner-desc">オーナー白まいのプライベートブログ</p>
-          <span class="blog-banner-btn">読む &nbsp;→</span>
-        </div>
-      </a>
     </div>
 
     <!-- SNSバナー -->
@@ -3309,6 +3305,9 @@
           <a href="https://www.facebook.com/relaxmrelaxmrelaxm/?locale=ja_JP" target="_blank" rel="noopener noreferrer" class="sns-banner-link">
             <img src="facebook.png" alt="Facebook" class="sns-banner-icon">
             <p class="sns-banner-name">Facebook</p>
+          </a>
+          <a href="https://ameblo.jp/mrelax/" target="_blank" rel="noopener noreferrer" class="sns-banner-link sns-blog-link">
+            <p class="sns-banner-name">白まいのブログ</p>
           </a>
         </div>
       </div>
@@ -3430,6 +3429,9 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
           当店はnoson japanの正規ディーラーです
         </div>
+        <a href="https://www.noson.jp/" target="_blank" rel="noopener noreferrer" class="noson-site-btn">
+          noson japan 公式サイト &nbsp;→
+        </a>
       </div>
       <div class="noson-visual">
         <div class="noson-slideshow">
@@ -3517,14 +3519,14 @@
   <div class="container">
     <div class="reveal">
       <div class="section-title-wrap">
-        <h2 class="section-title">Room Therapis<br><span style="font-size:1.2rem;font-weight:400;">（ルームセラピス）</span></h2>
+        <h2 class="section-title">Room Therapis<br><span class="rt-sub-sp" style="font-size:1.2rem;font-weight:400;">レンタルサロン・ルームセラピス</span><span class="rt-sub-pc" style="font-size:1.2rem;font-weight:400;">― レンタルサロン・ルームセラピス ―</span></h2>
         <div class="section-divider"></div>
       </div>
     </div>
     <div class="roomtherapis-inner reveal">
       <div class="roomtherapis-text">
         <p class="roomtherapis-desc">
-          リラックスM同ビルB1に街中レンタルサロン　<strong>Room Therapis</strong>　OPEN！！<br>
+          リラックスM同ビル地下１階に位置する街中レンタルサロン<br>
           ラグジュアリーな異なる雰囲気の施術ルームを時間でお貸しいたします！！<br>
           <strong>1時間550円〜</strong><br>
           お気軽にお問い合わせ下さい。
