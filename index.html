@@ -597,26 +597,29 @@
   .menu-modal-overlay {
     display: none;
     position: fixed; inset: 0; z-index: 1000;
-    background: rgba(0,0,0,.45);
+    background: rgba(0,0,0,.55);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     overscroll-behavior: contain;
     touch-action: none;
     animation: modalFade .25s ease;
+    padding: 1.5rem;
+    box-sizing: border-box;
   }
   .menu-modal-overlay.open { display: flex; }
   .menu-modal {
     background: #f5f0eb;
     width: 100%;
-    max-height: 85vh;
-    border-radius: 24px 24px 0 0;
+    max-width: 480px;
+    height: 75vh;
+    border-radius: 20px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 -8px 40px rgba(0,0,0,.25);
-    animation: sheetUp .3s cubic-bezier(.32,.72,0,1);
+    box-shadow: 0 8px 40px rgba(0,0,0,.35);
+    animation: modalPop .3s cubic-bezier(.32,.72,0,1);
   }
   .menu-modal-inner {
     overflow-y: auto;
@@ -642,6 +645,10 @@
   @keyframes sheetUp {
     from { transform: translateY(100%); }
     to   { transform: translateY(0); }
+  }
+  @keyframes modalPop {
+    from { opacity: 0; transform: scale(.95); }
+    to   { opacity: 1; transform: scale(1); }
   }
   .menu-modal-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; }
   .menu-modal-category {
